@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { StoreProvider, useStore } from "@/lib/store";
 import Kpis from "./Kpis";
 import Cashflow from "./Cashflow";
@@ -8,9 +9,10 @@ import Budgets from "./Budgets";
 import Goals from "./Goals";
 import Allocator from "./Allocator";
 import Transactions from "./Transactions";
-import { IconLock, IconTrash } from "./ui";
+import IncomeModal from "./IncomeModal";
+import { IconLock, IconPlus, IconTrash } from "./ui";
 
-function Header() {
+function Header({ onAddIncome }: { onAddIncome: () => void }) {
   const { dispatch } = useStore();
   return (
     <header className="sticky top-0 z-20 border-b border-ink/[0.06] bg-page/85 backdrop-blur">
@@ -26,6 +28,13 @@ function Header() {
             <IconLock size={11} />
             Data stays on this device
           </span>
+          <button
+            onClick={onAddIncome}
+            className="flex items-center gap-1.5 rounded-full bg-s1-deep px-4 py-2 text-xs font-semibold text-white shadow-[0_2px_8px_rgb(28_92_171/0.35)] transition-opacity hover:opacity-90"
+          >
+            <IconPlus size={12} />
+            Add income
+          </button>
           <button
             onClick={() => {
               if (confirm("Clear all Finora data from this browser? This cannot be undone.")) {
@@ -68,9 +77,11 @@ function Skeleton() {
 
 function Shell() {
   const { ready } = useStore();
+  const [incomeOpen, setIncomeOpen] = useState(false);
   return (
     <div className="min-h-dvh">
-      <Header />
+      <Header onAddIncome={() => setIncomeOpen(true)} />
+      {incomeOpen && <IncomeModal onClose={() => setIncomeOpen(false)} />}
       <h1 className="sr-only">Finora — personal financial planner</h1>
       {!ready ? (
         <Skeleton />

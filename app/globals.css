@@ -17,6 +17,7 @@
 
   /* categorical series (validated order — never re-shuffle) */
   --color-s1: #2a78d6; /* income */
+  --color-s1-deep: #1c5cab; /* income-blue UI surfaces (white text ≥ 4.5:1) */
   --color-s2: #eb6834; /* spending */
   --color-s3: #1baf7a; /* goals */
   --color-s4: #eda100;
