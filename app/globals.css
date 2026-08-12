@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-display: var(--font-cal), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme {
+  /* chrome & ink (validated light surface set) */
+  --color-page: #f9f9f7;
+  --color-surface: #fcfcfb;
+  --color-ink: #0b0b0b;
+  --color-ink-2: #52514e;
+  --color-muted: #898781;
+  --color-grid: #e1e0d9;
+  --color-axis: #c3c2b7;
+
+  /* categorical series (validated order — never re-shuffle) */
+  --color-s1: #2a78d6; /* income */
+  --color-s2: #eb6834; /* spending */
+  --color-s3: #1baf7a; /* goals */
+  --color-s4: #eda100;
+  --color-s5: #e87ba4;
+
+  /* status (reserved — icon + label, never color alone) */
+  --color-good: #0ca30c;
+  --color-good-text: #006300;
+  --color-warn: #fab219;
+  --color-warn-text: #7a5203;
+  --color-crit: #d03b3b;
+
+  --shadow-card: 0 1px 2px rgb(11 11 11 / 0.04), 0 12px 32px -18px rgb(11 11 11 / 0.1);
+  --shadow-pop: 0 4px 12px rgb(11 11 11 / 0.08), 0 20px 44px -20px rgb(11 11 11 / 0.18);
+}
+
+html {
+  background: var(--color-page);
+}
+
+/* quiet number inputs */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-s1) 55%, transparent);
+  outline-offset: 2px;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
